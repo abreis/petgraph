@@ -491,7 +491,7 @@ impl<N, E, Ty, Ix> StableGraph<N, E, Ty, Ix>
         }
     }
 
-    /// Return an iterator over the node indices of the graph
+    /// Return an iterator over the node indices of the graph.
     pub fn node_indices(&self) -> NodeIndices<N, Ix> {
         NodeIndices {
             iter: enumerate(self.raw_nodes())
@@ -528,7 +528,7 @@ impl<N, E, Ty, Ix> StableGraph<N, E, Ty, Ix>
         }
     }
 
-    /// Return an iterator over the node indices of the graph
+    /// Return an iterator over the edge indices of the graph.
     pub fn edge_indices(&self) -> EdgeIndices<E, Ix> {
         EdgeIndices {
             iter: enumerate(self.raw_edges())
@@ -1286,17 +1286,17 @@ pub struct Edges<'a, E: 'a, Ty, Ix: 'a = DefaultIx>
     where Ty: EdgeType,
           Ix: IndexType,
 {
-    /// starting node to skip over
+    // starting node to skip over
     skip_start: NodeIndex<Ix>,
     edges: &'a [Edge<Option<E>, Ix>],
 
-    /// Next edge to visit.
-    /// If we are only following one direction, we only use next[0] regardless.
+    // Next edge to visit.
+    // If we are only following one direction, we only use next[0] regardless.
     next: [EdgeIndex<Ix>; 2],
 
-    /// Which direction to follow
-    /// None: Both,
-    /// Some(d): d if Directed, Both if Undirected
+    // Which direction to follow
+    // None: Both,
+    // Some(d): d if Directed, Both if Undirected
     direction: Option<Direction>,
     ty: PhantomData<Ty>,
 }
